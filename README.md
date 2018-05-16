@@ -32,4 +32,4 @@ You can use the short scripts to run it after you built the project, just run sc
 * `dummy-cam` takes 0-1 argument, the id of your webcam (in case you don't know what to put here just put 0 which will be the default value)
 
 You can also change/add options like threshold percents (by default 0.24 or 24%) or which gpu to use (defaults to your primary nvidia gpu)
-# dummy
+
