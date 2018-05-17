@@ -501,14 +501,14 @@ void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filenam
         char out[256];
         sprintf(out,"predictions/result_%s",basename(filename));
         save_image(im, out);
-        show_image(im, out);
+        //show_image(im, out);
 
         free_image(im);
         free_image(sized);
         free(boxes);
         free_ptrs((void **)probs, l.w*l.h*l.n);
 #ifdef OPENCV
-        cvWaitKey(0);
+        //cvWaitKey(0);
         cvDestroyAllWindows();
 #endif
         if (filename) break;

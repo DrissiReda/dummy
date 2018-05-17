@@ -33,3 +33,4 @@ You can use the short scripts to run it after you built the project, just run sc
 
 You can also change/add options like threshold percents (by default 0.24 or 24%) or which gpu to use (defaults to your primary nvidia gpu)
 
+Results will always be in predictions/ folder.
