@@ -1,3 +1,4 @@
 classes=1
+train=faces_list.txt
 names=dummy.names
 backup=backup
