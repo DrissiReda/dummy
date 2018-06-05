@@ -35,6 +35,27 @@ You can also change/add options like threshold percents (by default 0.24 or 24%)
 
 Results will always be in predictions/ folder.
 
+### Configuration ### 
+
+These are some of the config options/parameters when training and when detecting. Many things are more or less self-explanatory (size, stride, batch_normalize, max_batches, width, height, channels ...).
+# [net]
+ - batch: How many images+labels are used in the forward pass to compute a gradient and update the weights via backpropagation.
+ - subdivisions: The batch is subdivided in this many "blocks". The images of a block are ran in parallel on the gpu.
+ - decay: A term to diminish the weights to avoid having large values. For stability reasons I guess.
+ - momentum:the new gradient is computed by *momentum* * *previous_gradient* + (1-*momentum*) * *gradient_of_current_batch*. Makes the gradient more stable.
+ - adam: Uses the adam optimizer, never tried it, not sure how well it works
+ - burn_in: For the first x batches, slowly increase the learning rate until its final value (your *learning_rate* parameter value). Use this to decide on a learning rate by monitoring until what value the loss decreases (before it starts to diverge).
+ - policy=steps: Use the steps and scales parameters below to adjust the learning rate during training
+ - steps=500,1000: Adjust the learning rate after 500 and 1000 batches
+ - scales=0.1,0.2: After 500, multiply the LR by 0.1, then after 1000 multiply again by 0.2
+
+# [layers]
+ - filters: How many convolutional kernels there are in a layer.
+ - activation: Activation function, relu, leaky relu, etc. See src/activations.h
+ - stopbackward: Do backpropagation until this layer only. Put it in the panultimate convolution layer before the first yolo layer to train only the layers behind that, e.g. when using pretrained weights.
+ - random: Put in the yolo layers. If set to 1 do data augmentation by resizing the images to different sizes every few batches. Use to generalize over object sizes.
+ 
+ 
 ![Darknet Logo](http://pjreddie.com/media/files/darknet-black-small.png)
 
 [Darknet](http://pjreddie.com/darknet) and [yolo](https://arxiv.org/pdf/1506.02640.pdf) are not mine 
