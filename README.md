@@ -38,7 +38,7 @@ Results will always be in predictions/ folder.
 ### Configuration ### 
 
 These are some of the config options/parameters when training and when detecting. Many things are more or less self-explanatory (size, stride, batch_normalize, max_batches, width, height, channels ...).
-# [net]
+##### [net]
  - batch: How many images+labels are used in the forward pass to compute a gradient and update the weights via backpropagation.
  - subdivisions: The batch is subdivided in this many "blocks". The images of a block are ran in parallel on the gpu.
  - decay: A term to diminish the weights to avoid having large values. For stability reasons I guess.
@@ -49,7 +49,7 @@ These are some of the config options/parameters when training and when detecting
  - steps=500,1000: Adjust the learning rate after 500 and 1000 batches
  - scales=0.1,0.2: After 500, multiply the LR by 0.1, then after 1000 multiply again by 0.2
 
-# [layers]
+##### [layers]
  - filters: How many convolutional kernels there are in a layer.
  - activation: Activation function, relu, leaky relu, etc. See src/activations.h
  - stopbackward: Do backpropagation until this layer only. Put it in the panultimate convolution layer before the first yolo layer to train only the layers behind that, e.g. when using pretrained weights.
