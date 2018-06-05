@@ -41,7 +41,11 @@ These are some of the config options/parameters when training and when detecting
 ##### [net]
  - batch: How many images+labels are used in the forward pass to compute a gradient and update the weights via backpropagation.
  - subdivisions: The batch is subdivided in this many "blocks". The images of a block are ran in parallel on the gpu.
- - decay: A term to diminish the weights to avoid having large values. For stability reasons I guess.
+ - decay: A term to diminish the weights to avoid having large values.
+ - channels: If you need help with it, it's better explained with this image :
+
+On the left we have a single channel with 4x4 pixels, The reorganization layer reduces the size to half then creates 4 channels with adjacent pixels in different channels. 
+![figure](https://i.stack.imgur.com/238m5.png)
  - momentum:the new gradient is computed by *momentum* * *previous_gradient* + (1-*momentum*) * *gradient_of_current_batch*. Makes the gradient more stable.
  - adam: Uses the adam optimizer, never tried it, not sure how well it works
  - burn_in: For the first x batches, slowly increase the learning rate until its final value (your *learning_rate* parameter value). Use this to decide on a learning rate by monitoring until what value the loss decreases (before it starts to diverge).
